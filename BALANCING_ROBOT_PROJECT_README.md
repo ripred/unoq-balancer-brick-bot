@@ -148,7 +148,7 @@ A complete **Balancing Robot** application for Arduino Uno Q consisting of:
 - **Python Backend:** 195 lines (brick implementation)
 - **Web Frontend:** 464 lines (HTML + JavaScript + CSS)
 - **Total Custom Code:** ~670 lines
-- **Files:** 48 files across 3 projects
+- **Files:** Project spans one app plus Brick catalog docs/examples
 
 ---
 
@@ -171,56 +171,32 @@ The Arduino Uno Q has 16GB eMMC storage partitioned as:
 ```
 /home/arduino/ArduinoApps/
 │
-├── balancing_robot/                    # Custom Brick (reusable component)
-│   ├── app.yaml                        # Brick app configuration
-│   ├── README.md                       # Basic brick readme
-│   ├── .gitignore
-│   ├── sketch/
-│   │   ├── sketch.ino                  # Arduino C++ sketch
-│   │   └── sketch.yaml
-│   └── python/
-│       ├── main.py                     # Basic Python entry point
-│       └── arduino/
-│           └── app_bricks/
-│               └── balancing_robot/
-│                   ├── __init__.py     # Brick Python API (placeholder)
-│                   ├── brick_config.yaml
-│                   ├── README.md
-│                   ├── examples/
-│                   │   └── 1_basic_usage.py
-│                   └── assets/
-│
-├── balancing_bot_app/                  # Main Application (uses the brick)
-│   ├── app.yaml                        # App config (uses arduino:web_ui + arduino:balancing_robot)
-│   ├── README.md
-│   ├── .gitignore
-│   ├── sketch/
-│   │   ├── sketch.ino                  # Arduino sketch
-│   │   └── sketch.yaml
-│   ├── python/
-│   │   ├── main.py                     # App entry point (28 lines)
-│   │   └── arduino/
-│   │       └── app_bricks/
-│   │           └── balancing_robot/
-│   │               └── __init__.py     # 195 lines - FULL IMPLEMENTATION ⭐
-│   │                                   # (PID, IMU, simulation, WebUI integration)
-│   └── assets/                         # Web Dashboard
-│       ├── index.html                  # Dashboard UI (85 lines)
-│       ├── app.js                      # Interactive controls (278 lines)
-│       ├── style.css                   # Styling (101 lines)
-│       └── libs/
-│           └── socket.io.min.js        # Socket.IO library
-│
-└── applab_layout_probe/                # Layout test project
-    ├── app.yaml
+└── balancing_bot_app/                  # Main Application (uses the brick)
+    ├── app.yaml                        # App config (uses arduino:web_ui + arduino:balancing_robot)
     ├── README.md
     ├── .gitignore
     ├── sketch/
-    │   ├── sketch.ino
+    │   ├── sketch.ino                  # Arduino sketch
     │   └── sketch.yaml
-    └── python/
-        └── main.py
+    ├── python/
+    │   ├── main.py                     # App entry point
+    │   └── arduino/
+    │       └── app_bricks/
+    │           └── balancing_robot/
+    │               └── __init__.py     # FULL IMPLEMENTATION ⭐
+    │                                   # (PID, IMU, simulation, WebUI integration)
+    └── assets/                         # Web Dashboard
+        ├── index.html                  # Dashboard UI
+        ├── app.js                      # Interactive controls
+        ├── style.css                   # Styling
+        └── libs/
+            └── socket.io.min.js        # Socket.IO library
 ```
+
+Brick catalog docs/examples (used by App Lab UI):
+- `/home/arduino/.local/share/arduino-app-cli/assets/0.6.2/docs/arduino/balancing_robot/README.md`
+- `/home/arduino/.local/share/arduino-app-cli/assets/0.6.2/api-docs/arduino/app_bricks/balancing_robot/API.md`
+- `/home/arduino/.local/share/arduino-app-cli/assets/0.6.2/examples/arduino/balancing_robot/`
 
 ### The Dual-Environment Architecture
 
@@ -352,9 +328,7 @@ ls -la
 ```
 
 You should see:
-- `balancing_robot/`
 - `balancing_bot_app/` ← **Your main project**
-- `applab_layout_probe/`
 
 ### Recommended: Set Up SSH Keys (No Password Required)
 
@@ -585,7 +559,7 @@ angle += rate * dt
 
 ### Brick Configuration
 
-**File:** `balancing_robot/python/arduino/app_bricks/balancing_robot/brick_config.yaml`
+**File:** `balancing_bot_app/python/arduino/app_bricks/balancing_robot/brick_config.yaml`
 
 ```yaml
 id: arduino:balancing_robot

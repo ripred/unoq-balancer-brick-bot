@@ -529,3 +529,7 @@ Next up:
 
 ### Milestone 32: Removed unused apps (Dec 27, 2025)
 - Confirmed they no longer appear in App Lab app list.
+
+### Milestone 33: Documentation cleanup (Dec 27, 2025)
+- Removed remaining references to deleted apps from the project README.
+- Updated local helper script paths to only target the active balancing_bot_app brick.

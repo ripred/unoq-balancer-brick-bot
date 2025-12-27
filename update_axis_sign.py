@@ -2,7 +2,6 @@ from pathlib import Path
 
 paths = [
     Path("/home/arduino/ArduinoApps/balancing_bot_app/python/arduino/app_bricks/balancing_robot/__init__.py"),
-    Path("/home/arduino/ArduinoApps/balancing_robot/python/arduino/app_bricks/balancing_robot/__init__.py"),
 ]
 
 for path in paths:
