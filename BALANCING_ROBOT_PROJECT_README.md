@@ -621,7 +621,7 @@ bricks:
 ### Immediate Tasks
 
 1. **Backup Verification**
-   - Download backup to Mac: `scp arduino@ada.local:/home/arduino/arduino_projects_COMPLETE_backup_20251227_053821.tar.gz ~/Desktop/`
+   - Download backups: use git (no tar archives)
    - Store in safe location
 
 2. **Test Current Implementation**
@@ -715,7 +715,7 @@ cd /home/arduino/ArduinoApps
 ls -lah
 
 # Create backup
-tar -czf backup_$(date +%Y%m%d).tar.gz ArduinoApps/
+git commit -m "Checkpoint"
 
 # Check disk usage
 df -h
@@ -810,7 +810,7 @@ sudo chown -R arduino:arduino /home/arduino/ArduinoApps/
 ## Project Metadata
 
 **Backup Information:**
-- **Filename:** `arduino_projects_COMPLETE_backup_20251227_053821.tar.gz`
+- **Filename:** (not used; git-only backups)
 - **Location:** `/home/arduino/`
 - **Size:** 23 KB (compressed)
 - **Files:** 48 files

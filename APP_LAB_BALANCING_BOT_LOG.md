@@ -414,10 +414,7 @@ Next up:
 270. `curl -s http://ada.local:7000/status | head -c 260`
 271. `curl -s 'http://ada.local:7000/motor_test?left=120&right=0&duration_ms=500' | head -c 200`
 272. `curl -s 'http://ada.local:7000/stop_motor_test' | head -c 200`
-273. `ssh arduino@ada.local 'tar -czf /home/arduino/arduino_projects_COMPLETE_backup_20251227_020500.tar.gz -C /home/arduino ArduinoApps BALANCING_ROBOT_PROJECT_README.md'`
-274. `scp arduino@ada.local:/home/arduino/arduino_projects_COMPLETE_backup_20251227_020500.tar.gz /Users/trent/dev/codex-agents/`
-275. `ssh arduino@ada.local 'tar -czf /home/arduino/arduino_projects_COMPLETE_backup_20251227_053821.tar.gz /home/arduino/ArduinoApps /home/arduino/.local/share/arduino-app-cli/assets/0.6.2/docs/arduino/balancing_robot /home/arduino/.local/share/arduino-app-cli/assets/0.6.2/api-docs/arduino/app_bricks/balancing_robot /home/arduino/.local/share/arduino-app-cli/assets/0.6.2/examples/arduino/balancing_robot /home/arduino/BALANCING_ROBOT_PROJECT_README.md /home/arduino/START_HERE.txt'`
-276. `scp arduino@ada.local:/home/arduino/arduino_projects_COMPLETE_backup_20251227_053821.tar.gz /Users/trent/dev/codex-agents/`
+273. (removed: tar backup commands; backups now managed by git)
 
 ### Milestone 9: Bridge integration (MPU ↔ MCU)
 - Switched MCU sketch to Arduino_RouterBridge RPC, with Bridge-provided handlers for PID/setpoint/mode/IMU/kick and Bridge.notify telemetry.
@@ -493,9 +490,10 @@ Next up:
 - Use the Motor Test buttons to confirm wiring and direction on hardware.
 
 ### Milestone 18: Backups refreshed (Dec 27, 2025)
-- Created a fresh on-board archive: `/home/arduino/arduino_projects_COMPLETE_backup_20251227_020500.tar.gz`.
+- Created a fresh on-board archive: (historical; tar archives no longer used; git is the backup source of truth).
 - Copied the archive to the host workspace for safekeeping.
-- Latest archive (Dec 27, 2025): `/home/arduino/arduino_projects_COMPLETE_backup_20251227_053821.tar.gz` and `/Users/trent/dev/codex-agents/arduino_projects_COMPLETE_backup_20251227_053821.tar.gz`.
+  (Historical note: tar archives are no longer used; git is the backup source of truth.)
+- Latest archive (Dec 27, 2025): no longer applicable (git-only backups).
 
 ### Milestone 19: Brick docs + examples (Dec 27, 2025)
 - Added full Brick README, brick_config, and examples in the app-local brick package.
