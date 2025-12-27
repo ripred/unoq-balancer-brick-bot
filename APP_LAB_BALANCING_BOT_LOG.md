@@ -556,3 +556,107 @@ Next up:
 
 Next up:
 - Restart the app and confirm the PID rate control appears and applies.
+
+### Milestone 38: Theme + responsive layout (Dec 27, 2025)
+- Added light/dark theme support with a UI toggle and saved preference.
+- Added layout detection for mobile/portrait vs desktop and adjusted grid/header accordingly.
+
+Next up:
+- Refresh the dashboard and verify theme toggle + layout switching on resize.
+
+### Milestone 39: Brighter telemetry visuals (Dec 27, 2025)
+- Brightened the waveform and wireframe stroke colors for better visibility.
+
+Next up:
+- Refresh the dashboard and confirm the line and wireframe are more visible.
+
+### Milestone 40: Wireframe stem alignment (Dec 27, 2025)
+- Extended the connecting rod to the wheel center for a more accurate wireframe.
+
+Next up:
+- Refresh the dashboard and confirm the stem reaches the wheel center.
+
+### Milestone 41: Auto-scale waveform (Dec 27, 2025)
+- Added dynamic scaling so the waveform stays within the chart area if the angle grows too large.
+
+Next up:
+- Refresh the dashboard and verify the waveform rescales when it hits the chart bounds.
+
+### Milestone 42: Waveform scale ticks (Dec 27, 2025)
+- Added grid/tick labels so the waveform shows its current amplitude in degrees.
+- Adjusted chart padding so ticks and labels are readable.
+
+Next up:
+- Refresh the dashboard and confirm ticks align with the waveform scale.
+
+### Milestone 43: Desktop layout expansion (Dec 27, 2025)
+- Widened the desktop layout and used a two-column grid so the control panel stays left while telemetry/history/wireframe stack to the right.
+- Relaxed the mobile layout detection thresholds so desktop windows don’t collapse into narrow/mobile view unnecessarily.
+
+Next up:
+- Refresh the dashboard and confirm the desktop layout uses the available width without collapsing.
+
+### Milestone 44: Adaptive desktop sizing (Dec 27, 2025)
+- Desktop layout now computes column widths from the available viewport so it uses the display area more effectively.
+- Increased max page width to allow wider desktops to breathe.
+
+Next up:
+- Refresh the dashboard and confirm it expands on wide screens without going narrow.
+
+### Milestone 45: Adaptive waveform ticks (Dec 27, 2025)
+- Replaced fixed tick labels with adaptive tick spacing to prevent overlaps at different scales.
+- Tick values now stay evenly spaced as the waveform auto-scales.
+
+Next up:
+- Refresh the dashboard and confirm tick labels stay readable as scale changes.
+
+### Milestone 46: Wide desktop layout (Dec 27, 2025)
+- Expanded the page width and added a 3-column layout on wide screens to reduce unused space.
+- Tweaked desktop sizing math to allocate more width to the controls and content columns.
+
+Next up:
+- Refresh the dashboard on a wide monitor and confirm the layout spreads out across the screen.
+
+### Milestone 47: Viewport-fit layout + responsive canvas sizes (Dec 27, 2025)
+- Ensured the page background fills the full viewport to eliminate the white band.
+- Added dynamic canvas sizing and card minimum heights based on viewport height.
+
+Next up:
+- Refresh the dashboard and confirm the layout fills the screen without unused bands.
+
+### Milestone 48: Telemetry sizing + history width (Dec 27, 2025)
+- Matched telemetry height to the angle history card.
+- Slimmed the telemetry column and widened the angle history column on wide desktops.
+
+Next up:
+- Refresh the dashboard and confirm telemetry is slimmer and history is wider.
+
+### Milestone 49: Align controls with charts (Dec 27, 2025)
+- Set the PID controls card height to align with the combined history + wireframe stack.
+
+Next up:
+- Refresh the dashboard and confirm the control card aligns with the chart stack edges.
+
+### Milestone 50: Control card height tweak (Dec 27, 2025)
+- Increased the control card height to account for the gap between history and wireframe.
+
+Next up:
+- Refresh the dashboard and confirm the bottom edges line up.
+
+### Milestone 51: Extend PID card height (Dec 27, 2025)
+- Added ~30px to the PID controls card height for bottom alignment.
+
+Next up:
+- Refresh the dashboard and verify the PID card aligns with the wireframe bottom.
+
+### Milestone 52: Fine-tune PID card height (Dec 27, 2025)
+- Added another ~15px to the PID controls card height for alignment.
+
+Next up:
+- Refresh the dashboard and confirm the bottoms line up.
+
+### Milestone 53: Final PID card height tweak (Dec 27, 2025)
+- Added another ~4px to the PID controls card height.
+
+Next up:
+- Refresh the dashboard and verify alignment is correct.
