@@ -4,7 +4,7 @@
 **Development Time:** 5+ hours
 **Status:** ✅ Functional, in development, **LIVE ON BOARD NOW**
 **Board Hostname:** `ada.local`
-**Backup Archive:** `arduino_projects_COMPLETE_backup_20251226_112310.tar.gz`
+**Backup policy:** This project now uses the local git repo as the backup source of truth. No tar archives are created or used.
 
 ---
 
@@ -34,16 +34,16 @@ arduino-app-cli app list
 # Open browser to: http://ada.local:7000
 ```
 
-**The backup archive is for safety only.** You don't need to extract it unless you want to restore or work on a copy elsewhere. The live, working project is already on the board and ready for you to continue developing!
+**Backups are handled by git.** The live, working project is already on the board and ready for you to continue developing.
 
 ---
 
 ## 📦 About the Backup Archive
 
-**Archive Name:** `arduino_projects_COMPLETE_backup_20251226_112310.tar.gz`
-**Location:** `/home/arduino/arduino_projects_COMPLETE_backup_20251226_112310.tar.gz`
-**Size:** 31 KB (compressed)
-**Purpose:** Emergency backup only - the real project is live on the board!
+**Archive Name:** (not used)
+**Location:** (not used)
+**Size:** n/a
+**Purpose:** Git is the backup; the real project is live on the board.
 
 ### When to Use the Archive
 
@@ -52,32 +52,27 @@ arduino-app-cli app list
 - ✅ You want to test the app (it's already running)
 - ✅ You want to make changes (edit files in `/home/arduino/ArduinoApps/`)
 
-**You NEED the archive if:**
+**You NEED a backup if:**
 - ⚠️ Files get accidentally deleted
-- ⚠️ You want to restore to this exact state
+- ⚠️ You want to restore to a known good state
 - ⚠️ You want to copy the project to another machine
 - ⚠️ You want to version control or archive for posterity
 
-### How to Extract the Archive (If Needed)
+### How to Restore from Git (If Needed)
+
+**On your Mac:**
+```bash
+# Commit locally and push to GitHub (once you add a remote)
+git status
+git add .
+git commit -m "Checkpoint"
+git push
+```
 
 **On the Arduino Uno Q board:**
 ```bash
-cd /home/arduino
-tar -xzf arduino_projects_COMPLETE_backup_20251226_112310.tar.gz
-# This extracts to: ArduinoApps/ and BALANCING_ROBOT_PROJECT_README.md
-```
-
-**To download to your Mac:**
-```bash
-# From your Mac terminal
-scp arduino@ada.local:/home/arduino/arduino_projects_COMPLETE_backup_20251226_112310.tar.gz ~/Downloads/
-```
-
-**To extract on your Mac:**
-```bash
-cd ~/Downloads
-tar -xzf arduino_projects_COMPLETE_backup_20251226_112310.tar.gz
-# Creates: ArduinoApps/ directory with all projects
+# Pull updates after you add a remote
+git pull
 ```
 
 ---
@@ -626,7 +621,7 @@ bricks:
 ### Immediate Tasks
 
 1. **Backup Verification**
-   - Download backup to Mac: `scp arduino@ada.local:/home/arduino/arduino_projects_COMPLETE_backup_20251226_112310.tar.gz ~/Desktop/`
+   - Download backup to Mac: `scp arduino@ada.local:/home/arduino/arduino_projects_COMPLETE_backup_20251227_053821.tar.gz ~/Desktop/`
    - Store in safe location
 
 2. **Test Current Implementation**
@@ -815,7 +810,7 @@ sudo chown -R arduino:arduino /home/arduino/ArduinoApps/
 ## Project Metadata
 
 **Backup Information:**
-- **Filename:** `arduino_projects_backup_20251226_111502.tar.gz`
+- **Filename:** `arduino_projects_COMPLETE_backup_20251227_053821.tar.gz`
 - **Location:** `/home/arduino/`
 - **Size:** 23 KB (compressed)
 - **Files:** 48 files

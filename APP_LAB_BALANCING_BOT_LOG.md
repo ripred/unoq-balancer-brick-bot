@@ -416,6 +416,8 @@ Next up:
 272. `curl -s 'http://ada.local:7000/stop_motor_test' | head -c 200`
 273. `ssh arduino@ada.local 'tar -czf /home/arduino/arduino_projects_COMPLETE_backup_20251227_020500.tar.gz -C /home/arduino ArduinoApps BALANCING_ROBOT_PROJECT_README.md'`
 274. `scp arduino@ada.local:/home/arduino/arduino_projects_COMPLETE_backup_20251227_020500.tar.gz /Users/trent/dev/codex-agents/`
+275. `ssh arduino@ada.local 'tar -czf /home/arduino/arduino_projects_COMPLETE_backup_20251227_053821.tar.gz /home/arduino/ArduinoApps /home/arduino/.local/share/arduino-app-cli/assets/0.6.2/docs/arduino/balancing_robot /home/arduino/.local/share/arduino-app-cli/assets/0.6.2/api-docs/arduino/app_bricks/balancing_robot /home/arduino/.local/share/arduino-app-cli/assets/0.6.2/examples/arduino/balancing_robot /home/arduino/BALANCING_ROBOT_PROJECT_README.md /home/arduino/START_HERE.txt'`
+276. `scp arduino@ada.local:/home/arduino/arduino_projects_COMPLETE_backup_20251227_053821.tar.gz /Users/trent/dev/codex-agents/`
 
 ### Milestone 9: Bridge integration (MPU ↔ MCU)
 - Switched MCU sketch to Arduino_RouterBridge RPC, with Bridge-provided handlers for PID/setpoint/mode/IMU/kick and Bridge.notify telemetry.
@@ -493,6 +495,7 @@ Next up:
 ### Milestone 18: Backups refreshed (Dec 27, 2025)
 - Created a fresh on-board archive: `/home/arduino/arduino_projects_COMPLETE_backup_20251227_020500.tar.gz`.
 - Copied the archive to the host workspace for safekeeping.
+- Latest archive (Dec 27, 2025): `/home/arduino/arduino_projects_COMPLETE_backup_20251227_053821.tar.gz` and `/Users/trent/dev/codex-agents/arduino_projects_COMPLETE_backup_20251227_053821.tar.gz`.
 
 ### Milestone 19: Brick docs + examples (Dec 27, 2025)
 - Added full Brick README, brick_config, and examples in the app-local brick package.
@@ -539,3 +542,7 @@ Next up:
 - Created a fresh on-board archive including ArduinoApps and balancing_robot docs/examples/assets.
 - Copied the new archive to the host workspace for safekeeping.
 - Ready to commit local log updates.
+
+### Milestone 26: Backup policy change (Dec 27, 2025)
+- Stopped using tar archives for backups.
+- Git repo is now the source of truth for backups; tar files removed and ignored.
