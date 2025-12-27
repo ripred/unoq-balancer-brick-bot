@@ -493,3 +493,49 @@ Next up:
 ### Milestone 18: Backups refreshed (Dec 27, 2025)
 - Created a fresh on-board archive: `/home/arduino/arduino_projects_COMPLETE_backup_20251227_020500.tar.gz`.
 - Copied the archive to the host workspace for safekeeping.
+
+### Milestone 19: Brick docs + examples (Dec 27, 2025)
+- Added full Brick README, brick_config, and examples in the app-local brick package.
+- Added Brick README + API docs into the App Lab assets catalog so the Brick can appear with proper docs.
+
+Next up:
+- Restart the App Lab daemon and verify the Balancing Robot Brick shows up in the Brick gallery.
+- Connect IMU/motors/encoders and validate real mode end-to-end.
+
+### Milestone 20: Brick README expanded for tabs (Dec 27, 2025)
+- Expanded Brick README with a full Overview section and a richer "Code example and usage" section.
+- README now clearly populates Overview and Usage Examples tabs in the Brick gallery.
+
+Next up:
+- Refresh the Brick view in App Lab to confirm the new Usage Examples tab content.
+- Optionally add screenshots or a mini HTML guide in the README.
+
+### Milestone 21: Usage Examples tab wired (Dec 27, 2025)
+- Discovered Usage Examples tab is populated from code examples under `assets/0.6.2/examples/arduino/<brick>/`.
+- Added three example scripts for the balancing_robot brick, so `arduino-app-cli brick details` now lists code_examples.
+
+Next up:
+- Refresh the Brick view in App Lab to confirm Usage Examples now shows the scripts.
+
+### Milestone 22: Usage Examples descriptions (Dec 27, 2025)
+- Added a short descriptive paragraph at the top of each Usage Example script to explain its purpose and how it differs.
+
+Next up:
+- Refresh App Lab and verify Usage Examples show the descriptions.
+
+### Milestone 23: Usage Examples metadata (Dec 27, 2025)
+- Updated Usage Example scripts with EXAMPLE_NAME / EXAMPLE_REQUIRES headers (as used by built-in bricks) so App Lab can list them properly.
+
+Next up:
+- Refresh App Lab and verify all three examples appear with descriptions.
+
+### Milestone 24: Usage Examples header comments (Dec 27, 2025)
+- Added short header comments at the top of each example file so the explanation appears inside the code block.
+
+Next up:
+- Refresh App Lab and confirm the comments appear above each example.
+
+### Milestone 25: Local repo + archives synced (Dec 27, 2025)
+- Created a fresh on-board archive including ArduinoApps and balancing_robot docs/examples/assets.
+- Copied the new archive to the host workspace for safekeeping.
+- Ready to commit local log updates.
