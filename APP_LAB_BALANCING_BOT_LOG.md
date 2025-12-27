@@ -536,3 +536,7 @@ Next up:
 
 ### Milestone 34: Workspace cleanup (Dec 27, 2025)
 - Removed local temporary files (brick_app.js, brick_index.html, brick_balancing_robot.py, tmp_app.js, tmp_sketch.ino, update_axis_sign.py).
+
+### Milestone 35: Kick/face-plant persistence fix (Dec 27, 2025)
+- Made the simulation kick persist by storing sim angle/rate state and applying it in the loop.
+- Kick now updates sim state and pushes a telemetry update immediately.
