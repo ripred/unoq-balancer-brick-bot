@@ -533,3 +533,6 @@ Next up:
 ### Milestone 33: Documentation cleanup (Dec 27, 2025)
 - Removed remaining references to deleted apps from the project README.
 - Updated local helper script paths to only target the active balancing_bot_app brick.
+
+### Milestone 34: Workspace cleanup (Dec 27, 2025)
+- Removed local temporary files (brick_app.js, brick_index.html, brick_balancing_robot.py, tmp_app.js, tmp_sketch.ino, update_axis_sign.py).
