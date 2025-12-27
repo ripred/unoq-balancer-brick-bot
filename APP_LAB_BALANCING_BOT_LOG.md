@@ -540,3 +540,19 @@ Next up:
 ### Milestone 35: Kick/face-plant persistence fix (Dec 27, 2025)
 - Made the simulation kick persist by storing sim angle/rate state and applying it in the loop.
 - Kick now updates sim state and pushes a telemetry update immediately.
+
+### Milestone 36: Smooth kick wobble + UI overlay (Dec 27, 2025)
+- Replaced the snap-to-angle kick with a damped wobble impulse so the kick eases out and recovers more slowly.
+- Updated the wireframe overlay to animate a smooth kick wobble instead of a hard snap.
+- Renamed the kick button label to “Kick.”
+
+Next up:
+- Restart the app and confirm the kick produces a smoother wobble in both waveform and wireframe.
+
+### Milestone 37: PID loop rate control (Dec 27, 2025)
+- Added a PID loop rate control in the dashboard and config.
+- Default PID loop rate is now 50 Hz.
+- Added HTTP/socket endpoint to update the PID loop rate from the UI.
+
+Next up:
+- Restart the app and confirm the PID rate control appears and applies.
