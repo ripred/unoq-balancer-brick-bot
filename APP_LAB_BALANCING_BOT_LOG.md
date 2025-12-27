@@ -100,12 +100,6 @@ Next up:
 47. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'arduino-app-cli --help'`
 48. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'arduino-app-cli app --help'`
 49. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'arduino-app-cli app new --help'`
-50. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'arduino-app-cli app new applab_layout_probe --description "layout probe"'`
-51. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'find /home/arduino/ArduinoApps/applab_layout_probe -maxdepth 3 -type f -print'`
-52. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'sed -n "1,200p" /home/arduino/ArduinoApps/applab_layout_probe/app.yaml'`
-53. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'sed -n "1,200p" /home/arduino/ArduinoApps/applab_layout_probe/python/main.py'`
-54. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'sed -n "1,200p" /home/arduino/ArduinoApps/applab_layout_probe/sketch/sketch.yaml'`
-55. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'echo "## app_utils.py"; find /home/arduino /usr /opt -type f -name "app_utils.py" 2>/dev/null; echo "## arduino package dirs"; find /home/arduino /usr /opt -type d -path "*site-packages/arduino*" 2>/dev/null; echo "## app dirs"; find /home/arduino/ArduinoApps/applab_layout_probe -maxdepth 3 -type d -print'`
 56. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'echo "## app_utils.py (local/usr)"; find /home/arduino/.local /usr/lib /usr/local -type f -name "app_utils.py" 2>/dev/null; echo "## arduino python packages"; find /home/arduino/.local /usr/lib /usr/local -type d -path "*site-packages/arduino*" 2>/dev/null; echo "## arduino app cli assets"; ls -la /home/arduino/.local/share/arduino-app-cli || true'`
 57. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'command -v rg >/dev/null && rg -n "app_utils" /home/arduino /usr/lib /usr/local 2>/dev/null | head -n 50'`
 58. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'which rg || true'`
@@ -113,19 +107,11 @@ Next up:
 60. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'echo "## app_utils dirs"; find /home/arduino /usr /opt -type d -name "app_utils" 2>/dev/null; echo "## arduino/app_utils dirs"; find /home/arduino /usr /opt -type d -path "*/arduino/app_utils" 2>/dev/null'`
 61. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'ls -la /usr/lib | grep -i arduino || true'`
 62. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'ls -la /opt'`
-63. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'arduino-app-cli app start applab_layout_probe; sleep 2; ps -ef | grep -v grep | grep applab_layout_probe || true; arduino-app-cli app stop applab_layout_probe'`
 64. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'arduino-app-cli app list'`
-65. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'arduino-app-cli app start user:applab_layout_probe; sleep 2; ps -ef | grep -v grep | grep applab_layout_probe || true; arduino-app-cli app stop user:applab_layout_probe'`
 66. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'docker ps -a | head -n 20'`
 67. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'sed -n "1,200p" /home/arduino/.local/share/arduino-app-cli/assets/0.6.2/compose/arduino/audio_classification/brick_compose.yaml'`
-68. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'docker inspect applab_layout_probe-main-1 --format "{{json .Mounts}}"'`
 69. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'find /home/arduino/.local/share/arduino-app-cli/examples -maxdepth 3 -name app.yaml -print | head -n 5'`
 70. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'sed -n "1,200p" /home/arduino/.local/share/arduino-app-cli/examples/blink-with-ui/app.yaml'`
-71. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'docker run --rm -v /home/arduino/ArduinoApps/applab_layout_probe:/app ghcr.io/arduino/app-bricks/python-apps-base:0.6.2 python - <<"PY"\nimport sys\nprint("\\n".join(sys.path))\nPY'`
-72. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'docker run --rm --entrypoint python -v /home/arduino/ArduinoApps/applab_layout_probe:/app ghcr.io/arduino/app-bricks/python-apps-base:0.6.2 - <<"PY"\nimport sys\nprint("\\n".join(sys.path))\nPY'`
-73. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'docker run --rm --entrypoint python -v /home/arduino/ArduinoApps/applab_layout_probe:/app ghcr.io/arduino/app-bricks/python-apps-base:0.6.2 -c "import sys; print('PATHS'); print('\\n'.join(sys.path))"'`
-74. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'docker run --rm --entrypoint python -v /home/arduino/ArduinoApps/applab_layout_probe:/app ghcr.io/arduino/app-bricks/python-apps-base:0.6.2 -c "import sys; print(\\"PATHS\\"); print(\\"|\\".join(sys.path))"'`
-75. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'docker inspect applab_layout_probe-main-1 --format "{{json .Config.Env}}"'`
 76. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'docker run --rm --entrypoint cat ghcr.io/arduino/app-bricks/python-apps-base:0.6.2 /run.sh'`
 77. `ssh -o BatchMode=yes -o ConnectTimeout=10 arduino@ada.local 'grep -R "app_utils" -n /home/arduino/.local /home/arduino/ArduinoApps --include "*.py" 2>/dev/null | head -n 50'`
 78. `cat <<'EOF' >> /Users/trent/dev/codex-agents/APP_LAB_BALANCING_BOT_LOG.md`
@@ -273,24 +259,15 @@ Notes:
 151. `curl -I http://ada.local:7000/libs/socket.io.min.js | head -n 10`
 152. `ssh arduino@ada.local 'sed -n "1,200p" /home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.ino'`
 153. `ssh arduino@ada.local 'sed -n "1,200p" /home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.yaml'`
-154. `ssh arduino@ada.local 'sed -n "1,260p" /home/arduino/ArduinoApps/balancing_robot/python/arduino/app_bricks/balancing_robot/__init__.py'`
 155. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_bot_app/python/arduino/app_bricks/balancing_robot/__init__.py <<\"PY\" ... PY'`
-156. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_robot/python/arduino/app_bricks/balancing_robot/__init__.py <<\"PY\" ... PY'`
 157. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.ino <<\"CPP\" ... CPP'`
-158. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_robot/sketch/sketch.ino <<\"CPP\" ... CPP'`
 159. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.yaml <<\"YAML\" ... YAML'`
-160. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_robot/sketch/sketch.yaml <<\"YAML\" ... YAML'`
 161. `ssh arduino@ada.local 'curl -fsSL -o /home/arduino/ArduinoApps/balancing_bot_app/sketch/libraries/PID/PID_v1.h https://raw.githubusercontent.com/br3ttb/Arduino-PID-Library/master/PID_v1.h'`
 162. `ssh arduino@ada.local 'curl -fsSL -o /home/arduino/ArduinoApps/balancing_bot_app/sketch/libraries/PID/PID_v1.cpp https://raw.githubusercontent.com/br3ttb/Arduino-PID-Library/master/PID_v1.cpp'`
-163. `ssh arduino@ada.local 'curl -fsSL -o /home/arduino/ArduinoApps/balancing_robot/sketch/libraries/PID/PID_v1.h https://raw.githubusercontent.com/br3ttb/Arduino-PID-Library/master/PID_v1.h'`
-164. `ssh arduino@ada.local 'curl -fsSL -o /home/arduino/ArduinoApps/balancing_robot/sketch/libraries/PID/PID_v1.cpp https://raw.githubusercontent.com/br3ttb/Arduino-PID-Library/master/PID_v1.cpp'`
 165. `ssh arduino@ada.local 'cp /home/arduino/ArduinoApps/balancing_bot_app/sketch/libraries/PID/PID_v1.h /home/arduino/ArduinoApps/balancing_bot_app/sketch/PID_v1.h'`
 166. `ssh arduino@ada.local 'cp /home/arduino/ArduinoApps/balancing_bot_app/sketch/libraries/PID/PID_v1.cpp /home/arduino/ArduinoApps/balancing_bot_app/sketch/PID_v1.cpp'`
-167. `ssh arduino@ada.local 'cp /home/arduino/ArduinoApps/balancing_robot/sketch/libraries/PID/PID_v1.h /home/arduino/ArduinoApps/balancing_robot/sketch/PID_v1.h'`
-168. `ssh arduino@ada.local 'cp /home/arduino/ArduinoApps/balancing_robot/sketch/libraries/PID/PID_v1.cpp /home/arduino/ArduinoApps/balancing_robot/sketch/PID_v1.cpp'`
 169. `cat > /Users/trent/dev/codex-agents/tmp_sketch.ino`
 170. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.ino`
-171. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_robot/sketch/sketch.ino`
 172. `ssh arduino@ada.local 'arduino-app-cli app stop user:balancing_bot_app; sleep 2; arduino-app-cli app start user:balancing_bot_app'`
 173. `curl -s http://ada.local:7000/status | head -c 300`
 
@@ -323,9 +300,7 @@ Next up:
 179. `ssh arduino@ada.local 'sed -n "1,120p" /home/arduino/.local/share/arduino-app-cli/examples/weather-forecast/sketch/sketch.ino'`
 180. `cat > /Users/trent/dev/codex-agents/tmp_sketch.ino`
 181. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.ino`
-182. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_robot/sketch/sketch.ino`
 183. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_bot_app/python/arduino/app_bricks/balancing_robot/__init__.py <<\"PY\" ... PY'`
-184. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_robot/python/arduino/app_bricks/balancing_robot/__init__.py <<\"PY\" ... PY'`
 185. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_bot_app/python/main.py <<\"PY\" ... PY'`
 186. `ssh arduino@ada.local 'arduino-app-cli app stop user:balancing_bot_app; sleep 2; arduino-app-cli app start user:balancing_bot_app'`
 187. `curl -s http://ada.local:7000/status | head -c 300`
@@ -334,16 +309,13 @@ Next up:
 190. `curl -s 'http://ada.local:7000/set_mode?mode=sim' | head -c 200`
 191. `cat > /Users/trent/dev/codex-agents/tmp_sketch.ino`
 192. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.ino`
-193. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_robot/sketch/sketch.ino`
 194. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_bot_app/python/arduino/app_bricks/balancing_robot/__init__.py <<\"PY\" ... PY'`
-195. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_robot/python/arduino/app_bricks/balancing_robot/__init__.py <<\"PY\" ... PY'`
 196. `ssh arduino@ada.local 'arduino-app-cli app stop user:balancing_bot_app; sleep 2; arduino-app-cli app start user:balancing_bot_app'`
 197. `curl -s 'http://ada.local:7000/set_mode?mode=real' | head -c 200`
 198. `sleep 1; curl -s http://ada.local:7000/status | head -c 300`
 199. `ssh arduino@ada.local 'arduino-app-cli app logs user:balancing_bot_app | tail -n 40'`
 200. `cat > /Users/trent/dev/codex-agents/tmp_sketch.ino`
 201. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.ino`
-202. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_robot/sketch/sketch.ino`
 203. `ssh arduino@ada.local 'python3 - <<\"PY\" ... PY'`
 204. `ssh arduino@ada.local 'arduino-app-cli app stop user:balancing_bot_app; sleep 2; arduino-app-cli app start user:balancing_bot_app'`
 205. `curl -s 'http://ada.local:7000/set_mode?mode=real' | head -c 200`
@@ -356,18 +328,15 @@ Next up:
 212. `sleep 1; curl -s http://ada.local:7000/status | head -c 260`
 213. `cat > /Users/trent/dev/codex-agents/tmp_sketch.ino`
 214. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.ino`
-215. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_robot/sketch/sketch.ino`
 216. `ssh arduino@ada.local 'arduino-app-cli app stop user:balancing_bot_app; sleep 2; arduino-app-cli app start user:balancing_bot_app'`
 217. `curl -s 'http://ada.local:7000/set_mode?mode=real' | head -c 200`
 218. `sleep 1; curl -s http://ada.local:7000/status | head -c 260`
 219. `cat > /Users/trent/dev/codex-agents/tmp_sketch.ino`
 220. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.ino`
-221. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_robot/sketch/sketch.ino`
 222. `cat > /Users/trent/dev/codex-agents/tmp_app.js`
 223. `scp /Users/trent/dev/codex-agents/tmp_app.js arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/assets/app.js`
 224. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_bot_app/assets/index.html <<\"HTML\" ... HTML'`
 225. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_bot_app/python/arduino/app_bricks/balancing_robot/__init__.py <<\"PY\" ... PY'`
-226. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_robot/python/arduino/app_bricks/balancing_robot/__init__.py <<\"PY\" ... PY'`
 227. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_bot_app/python/main.py <<\"PY\" ... PY'`
 228. `ssh arduino@ada.local 'arduino-app-cli app restart user:balancing_bot_app'`
 229. `curl -s http://ada.local:7000/status | head -c 200`
@@ -375,14 +344,12 @@ Next up:
 231. `curl -s http://ada.local:7000/status | head -c 200`
 232. `cat > /Users/trent/dev/codex-agents/tmp_sketch.ino`
 233. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.ino`
-234. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_robot/sketch/sketch.ino`
 235. `scp arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/python/arduino/app_bricks/balancing_robot/__init__.py /Users/trent/dev/codex-agents/brick_balancing_robot.py`
 236. `scp arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/assets/index.html /Users/trent/dev/codex-agents/brick_index.html`
 237. `scp arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/assets/app.js /Users/trent/dev/codex-agents/brick_app.js`
 238. `scp /Users/trent/dev/codex-agents/brick_index.html arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/assets/index.html`
 239. `scp /Users/trent/dev/codex-agents/brick_app.js arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/assets/app.js`
 240. `scp /Users/trent/dev/codex-agents/brick_balancing_robot.py arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/python/arduino/app_bricks/balancing_robot/__init__.py`
-241. `scp /Users/trent/dev/codex-agents/brick_balancing_robot.py arduino@ada.local:/home/arduino/ArduinoApps/balancing_robot/python/arduino/app_bricks/balancing_robot/__init__.py`
 242. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_bot_app/python/main.py <<\"PY\" ... PY'`
 243. `ssh arduino@ada.local 'arduino-app-cli app stop user:balancing_bot_app; sleep 2; arduino-app-cli app start user:balancing_bot_app'`
 244. `curl -s http://ada.local:7000/status | head -c 220`
@@ -390,9 +357,7 @@ Next up:
 246. `curl -s 'http://ada.local:7000/set_encoder_invert?left=-1&right=-1' | head -c 200`
 247. `cat > /Users/trent/dev/codex-agents/tmp_sketch.ino`
 248. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.ino`
-249. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_robot/sketch/sketch.ino`
 250. `scp /Users/trent/dev/codex-agents/brick_balancing_robot.py arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/python/arduino/app_bricks/balancing_robot/__init__.py`
-251. `scp /Users/trent/dev/codex-agents/brick_balancing_robot.py arduino@ada.local:/home/arduino/ArduinoApps/balancing_robot/python/arduino/app_bricks/balancing_robot/__init__.py`
 252. `scp /Users/trent/dev/codex-agents/brick_index.html arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/assets/index.html`
 253. `scp /Users/trent/dev/codex-agents/brick_app.js arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/assets/app.js`
 254. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_bot_app/python/main.py <<\"PY\" ... PY'`
@@ -406,9 +371,7 @@ Next up:
 262. `scp /Users/trent/dev/codex-agents/brick_index.html arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/assets/index.html`
 263. `scp /Users/trent/dev/codex-agents/brick_app.js arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/assets/app.js`
 264. `scp /Users/trent/dev/codex-agents/brick_balancing_robot.py arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/python/arduino/app_bricks/balancing_robot/__init__.py`
-265. `scp /Users/trent/dev/codex-agents/brick_balancing_robot.py arduino@ada.local:/home/arduino/ArduinoApps/balancing_robot/python/arduino/app_bricks/balancing_robot/__init__.py`
 266. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_bot_app/sketch/sketch.ino`
-267. `scp /Users/trent/dev/codex-agents/tmp_sketch.ino arduino@ada.local:/home/arduino/ArduinoApps/balancing_robot/sketch/sketch.ino`
 268. `ssh arduino@ada.local 'cat > /home/arduino/ArduinoApps/balancing_bot_app/python/main.py <<\"PY\" ... PY'`
 269. `ssh arduino@ada.local 'arduino-app-cli app stop user:balancing_bot_app; sleep 2; arduino-app-cli app start user:balancing_bot_app'`
 270. `curl -s http://ada.local:7000/status | head -c 260`
@@ -544,3 +507,25 @@ Next up:
 ### Milestone 26: Backup policy change (Dec 27, 2025)
 - Stopped using tar archives for backups.
 - Git repo is now the source of truth for backups; tar files removed and ignored.
+
+### Milestone 27: App metadata + README refreshed (Dec 27, 2025)
+- Updated balancing_bot_app app.yaml with a clear name, emoji icon, and description.
+- Expanded the app README with quick start, modes, hardware notes, and file map.
+
+Next up:
+- Refresh App Lab and verify the app card shows the new icon and description.
+
+### Milestone 28: App description expanded (Dec 27, 2025)
+- Expanded balancing_bot_app description to highlight PID tuning, IMU alignment, motor tests, and simulation-first workflow.
+
+### Milestone 29: App description doubled (Dec 27, 2025)
+- Expanded balancing_bot_app description to roughly double length for richer app card detail.
+
+### Milestone 30: App description refined (Dec 27, 2025)
+- Shortened the trailing description and added WiFi dashboard mention.
+
+### Milestone 31: App description spiced up (Dec 27, 2025)
+- Added a more lively, friendly tone to the app description.
+
+### Milestone 32: Removed unused apps (Dec 27, 2025)
+- Confirmed they no longer appear in App Lab app list.
