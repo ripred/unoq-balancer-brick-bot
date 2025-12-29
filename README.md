@@ -41,6 +41,10 @@ Set UNOQ_HOST to match your board name and user:
 
   export UNOQ_HOST="arduino@ada.local"
 
+PowerShell (Windows):
+
+  $env:UNOQ_HOST="arduino@ada.local"
+
 You can also pass --remote in any script instead of setting UNOQ_HOST.
 
 ---
@@ -49,7 +53,7 @@ You can also pass --remote in any script instead of setting UNOQ_HOST.
 
   ssh "$UNOQ_HOST" "uname -a"
 
-If this fails, fix networking or the board name first.
+If this fails, fix networking or the board name first. If `.local` doesn’t resolve on your network, use the board’s IP address instead.
 
 ---
 
@@ -64,6 +68,8 @@ This makes your custom Brick show up in the App Lab Brick gallery.
 If your Uno Q uses a different App Lab assets version, add:
   --assets-version 0.6.2
 
+Note: the Brick gallery won’t update until the App Lab daemon is restarted (next step).
+
 ---
 
 6) Register the Brick in bricks-list.yaml
@@ -76,14 +82,25 @@ If your Uno Q uses a different App Lab assets version, add:
 
 ---
 
-7) Deploy the app to the Uno Q
+7) Restart the App Lab daemon (required to refresh Brick gallery)
+
+App Lab caches the brick list. After you register a custom brick or update its metadata,
+restart the daemon so the gallery refreshes:
+
+  ssh "$UNOQ_HOST" "pkill -f 'arduino-app-cli daemon' && nohup arduino-app-cli daemon --log-level error >/tmp/arduino-app-cli-daemon.log 2>&1 &"
+
+Then reopen App Lab.
+
+---
+
+8) Deploy the app to the Uno Q
 
   ./scripts/03_deploy_app_to_uno_q.sh \
     --local-app ./unoq/ArduinoApps/balancing_bot_app
 
 ---
 
-8) Start the app (dev mode)
+9) Start the app (dev mode)
 
   ./scripts/04_start_dev_mode.sh \
     --app-id "user:balancing_bot_app"
@@ -93,7 +110,7 @@ Open the dashboard:
 
 ---
 
-9) Create your own Brick + App (reusable workflow)
+10) Create your own Brick + App (reusable workflow)
 
 These scripts are project-agnostic. Use them for any future custom Brick/app.
 
@@ -133,7 +150,7 @@ Install your Brick docs/examples:
 
 ---
 
-10) Notes
+11) Notes
 
 - These scripts are idempotent and safe to re-run.
 - If rsync is not installed on your host, the deploy script falls back to tar over SSH.
@@ -142,7 +159,7 @@ Install your Brick docs/examples:
 
 ---
 
-11) Images (for the article series)
+12) Images (for the article series)
 
 Planned screenshots to include in posts:
 - Brick gallery README tab
