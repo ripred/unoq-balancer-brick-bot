@@ -1,0 +1,8 @@
+name: Balancing Bot
+icon: 🤖
+description: "Self-balancing robot app with live PID tuning, IMU alignment, and motor tests—plus a simulation-first workflow for Motor Shield Rev3 + MPU6050/9250. Real-time telemetry and a WiFi dashboard make the safe-to-real tuning process fast and fun." 
+ports: [7000]
+
+bricks:
+  - arduino:web_ui
+  - arduino:balancing_robot

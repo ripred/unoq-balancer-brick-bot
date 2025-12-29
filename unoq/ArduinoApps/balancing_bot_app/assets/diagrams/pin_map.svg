@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+  <defs>
+    <style>
+      .box { fill:#1c1f22; stroke:#2fb4ad; stroke-width:2; rx:12; }
+      .text { fill:#e7e5e2; font-family:Arial, sans-serif; font-size:14px; }
+      .small { font-size:12px; fill:#9aa2a8; }
+      .pin { fill:#23272b; stroke:#2fb4ad; stroke-width:1; }
+    </style>
+  </defs>
+
+  <rect class="box" x="40" y="40" width="360" height="320" />
+  <text class="text" x="60" y="75">Arduino Uno Q</text>
+  <text class="small" x="60" y="95">Motor Shield Rev3 + IMU + Encoders</text>
+
+  <rect class="pin" x="70" y="120" width="300" height="28" />
+  <text class="text" x="80" y="140">D3  PWM  → Motor L PWM</text>
+
+  <rect class="pin" x="70" y="155" width="300" height="28" />
+  <text class="text" x="80" y="175">D12 DIR → Motor L DIR</text>
+
+  <rect class="pin" x="70" y="190" width="300" height="28" />
+  <text class="text" x="80" y="210">D9  BRAKE → Motor L BRAKE</text>
+
+  <rect class="pin" x="70" y="225" width="300" height="28" />
+  <text class="text" x="80" y="245">D11 PWM → Motor R PWM</text>
+
+  <rect class="pin" x="70" y="260" width="300" height="28" />
+  <text class="text" x="80" y="280">D13 DIR → Motor R DIR</text>
+
+  <rect class="pin" x="70" y="295" width="300" height="28" />
+  <text class="text" x="80" y="315">D8  BRAKE → Motor R BRAKE</text>
+
+  <rect class="pin" x="430" y="90" width="420" height="260" />
+  <text class="text" x="450" y="120">Encoders + IMU</text>
+  <text class="small" x="450" y="145">Encoders (A/B): D2, D4, D5, D6</text>
+  <text class="small" x="450" y="170">IMU I2C: SDA/SCL (Wire)</text>
+  <text class="small" x="450" y="195">IMU Addr: 0x68 (MPU6050/9250)</text>
+
+  <text class="small" x="450" y="235">Enc L A → D2</text>
+  <text class="small" x="450" y="255">Enc L B → D4</text>
+  <text class="small" x="450" y="275">Enc R A → D5</text>
+  <text class="small" x="450" y="295">Enc R B → D6</text>
+</svg>

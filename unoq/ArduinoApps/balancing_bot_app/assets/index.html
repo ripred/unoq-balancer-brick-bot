@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balancing Robot Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="page">
+        <header class="header">
+            <div>
+                <h1>Balancing Robot</h1>
+                <p class="subtitle">Live tuning + telemetry</p>
+            </div>
+            <div class="header-controls">
+                <button id="theme-toggle" class="ghost">Theme</button>
+                <div class="status" id="status">Connecting...</div>
+            </div>
+        </header>
+
+        <section class="grid">
+            <div class="card card-controls">
+                <h2>PID Tuning</h2>
+                <div class="pid-row pid-triple">
+                    <div class="field"><label class="label" for="pid-p">P</label><input id="pid-p" type="number" step="0.1"></div>
+                    <div class="field"><label class="label" for="pid-i">I</label><input id="pid-i" type="number" step="0.01"></div>
+                    <div class="field"><label class="label" for="pid-d">D</label><input id="pid-d" type="number" step="0.01"></div>
+                    <button id="pid-apply">Apply</button>
+                </div>
+                <div class="pid-row">
+                    <label class="label" for="pid-hz">PID Rate</label>
+                    <input id="pid-hz" type="number" step="1" class="grow">
+                    <span class="hint">Hz</span>
+                    <button id="pid-hz-apply">Apply</button>
+                </div>
+                <div class="pid-row">
+                    <label class="label" for="setpoint">Set</label>
+                    <input id="setpoint" type="number" step="0.1" class="grow">
+                    <button id="setpoint-apply">Apply</button>
+                </div>
+                <div class="pid-row">
+                    <label class="label" for="imu-model">IMU</label>
+                    <select id="imu-model" class="grow">
+                        <option value="mpu6050">MPU-6050</option>
+                        <option value="mpu9250">MPU-9250</option>
+                    </select>
+                    <button id="imu-apply">Apply</button>
+                </div>
+                <div class="pid-row">
+                    <label class="label" for="axis-mode">Axis</label>
+                    <select id="axis-mode" class="grow">
+                        <option value="pitch">Pitch</option>
+                        <option value="roll">Roll</option>
+                    </select>
+                    <button id="axis-apply">Apply</button>
+                </div>
+                <div class="pid-row">
+                    <label class="label" for="axis-sign">Axis Sign</label>
+                    <select id="axis-sign" class="grow">
+                        <option value="1">Normal</option>
+                        <option value="-1">Invert</option>
+                    </select>
+                    <button id="axis-sign-apply">Apply</button>
+                </div>
+                <div class="pid-row">
+                    <label class="label" for="motor-left">Motor Dir</label>
+                    <select id="motor-left" class="grow">
+                        <option value="1">Left Normal</option>
+                        <option value="-1">Left Invert</option>
+                    </select>
+                    <select id="motor-right" class="grow">
+                        <option value="1">Right Normal</option>
+                        <option value="-1">Right Invert</option>
+                    </select>
+                    <button id="motor-apply">Apply</button>
+                </div>
+                <div class="pid-row">
+                    <label class="label" for="enc-left">Encoder Dir</label>
+                    <select id="enc-left" class="grow">
+                        <option value="1">Left Normal</option>
+                        <option value="-1">Left Invert</option>
+                    </select>
+                    <select id="enc-right" class="grow">
+                        <option value="1">Right Normal</option>
+                        <option value="-1">Right Invert</option>
+                    </select>
+                    <button id="enc-apply">Apply</button>
+                </div>
+                <div class="pid-row">
+                    <label class="label" for="run-mode">Mode</label>
+                    <select id="run-mode" class="grow">
+                        <option value="sim">Simulation</option>
+                        <option value="real">Real</option>
+                    </select>
+                    <button id="mode-apply">Apply</button>
+                </div>
+                <div class="pid-row">
+                    <label class="label" for="kick-angle">Kick</label>
+                    <input id="kick-angle" type="number" step="1" value="30" class="grow">
+                    <button id="kick-apply">Kick</button>
+                </div>
+                <div class="pid-row">
+                    <label class="label" for="motor-test-speed">Motor Test</label>
+                    <input id="motor-test-speed" type="number" step="10" value="100" class="grow">
+                    <button id="motor-test-left-fwd">Left +</button>
+                    <button id="motor-test-left-rev">Left -</button>
+                    <button id="motor-test-right-fwd">Right +</button>
+                    <button id="motor-test-right-rev">Right -</button>
+                    <button id="motor-test-stop">Stop</button>
+                </div>
+            </div>
+
+            <div class="card card-telemetry">
+                <h2>Telemetry</h2>
+                <div class="telemetry">
+                    <div>Angle: <span id="angle">0</span> deg</div>
+                    <div>Gyro: <span id="gyro">0</span> dps</div>
+                    <div>Accel: <span id="accel">0</span> g</div>
+                    <div>Motor: <span id="motor">0</span></div>
+                    <div>Encoders: <span id="enc">0/0</span></div>
+                    <div>Mode: <span id="mode">sim</span></div>
+                    <div>IMU: <span id="imu">mpu6050</span></div>
+                </div>
+                <div id="error-container" class="error-message" style="display:none;"></div>
+            </div>
+
+            <div class="card wide card-history">
+                <h2>Angle History</h2>
+                <canvas id="chart" width="800" height="200"></canvas>
+            </div>
+
+            <div class="card wide card-wireframe">
+                <h2>Wireframe View</h2>
+                <canvas id="wireframe" width="800" height="320"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <script src="libs/socket.io.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

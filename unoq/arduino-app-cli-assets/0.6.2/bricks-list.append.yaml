@@ -1,0 +1,8 @@
+- id: arduino:balancing_robot
+  name: Balancing Robot
+  description: Balancing robot brick (custom)
+  require_container: false
+  require_model: false
+  mount_devices_into_container: false
+  ports: []
+  category: robotics

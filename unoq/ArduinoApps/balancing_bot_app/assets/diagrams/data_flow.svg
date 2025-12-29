@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320" viewBox="0 0 900 320">
+  <defs>
+    <style>
+      .box { fill:#1c1f22; stroke:#2fb4ad; stroke-width:2; rx:12; }
+      .text { fill:#e7e5e2; font-family:Arial, sans-serif; font-size:14px; }
+      .small { font-size:12px; fill:#9aa2a8; }
+      .arrow { stroke:#2fb4ad; stroke-width:2; marker-end:url(#arrow); }
+      .dash { stroke-dasharray:6 4; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L10,3 L0,6 Z" fill="#2fb4ad" />
+    </marker>
+  </defs>
+
+  <rect class="box" x="40" y="60" width="200" height="80" />
+  <text class="text" x="60" y="95">Dashboard</text>
+  <text class="small" x="60" y="115">PID / setpoint</text>
+
+  <rect class="box" x="320" y="60" width="200" height="80" />
+  <text class="text" x="340" y="95">Python Brick</text>
+  <text class="small" x="340" y="115">State + sim</text>
+
+  <rect class="box" x="600" y="60" width="220" height="80" />
+  <text class="text" x="620" y="95">MCU Sketch</text>
+  <text class="small" x="620" y="115">PID + motor out</text>
+
+  <rect class="box" x="320" y="190" width="200" height="80" />
+  <text class="text" x="340" y="225">Telemetry</text>
+  <text class="small" x="340" y="245">angle/gyro/enc</text>
+
+  <line class="arrow" x1="240" y1="100" x2="320" y2="100" />
+  <line class="arrow" x1="520" y1="100" x2="600" y2="100" />
+  <line class="arrow dash" x1="600" y1="140" x2="520" y2="190" />
+  <line class="arrow" x1="320" y1="230" x2="240" y2="120" />
+
+  <text class="small" x="255" y="90">commands</text>
+  <text class="small" x="525" y="90">bridge RPC</text>
+  <text class="small" x="545" y="175">sensor data</text>
+  <text class="small" x="255" y="170">dashboard update</text>
+</svg>

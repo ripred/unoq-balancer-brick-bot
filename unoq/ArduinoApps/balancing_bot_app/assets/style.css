@@ -1,0 +1,208 @@
+:root {
+    --bg: #f6f4ef;
+    --ink: #2b2b2b;
+    --accent: #0b7a75;
+    --card: #ffffff;
+    --muted: #6a6a6a;
+    --border: #eee;
+    --card-shadow: rgba(0,0,0,0.08);
+}
+
+body[data-theme="dark"] {
+    --bg: #121416;
+    --ink: #e7e5e2;
+    --accent: #2fb4ad;
+    --card: #1c1f22;
+    --muted: #9aa2a8;
+    --border: #2a2f33;
+    --card-shadow: rgba(0,0,0,0.5);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: "Avenir", "Gill Sans", "Trebuchet MS", sans-serif;
+    background: radial-gradient(circle at top left, #fff, var(--bg));
+    background-color: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+}
+
+.page {
+    padding: 24px;
+    width: min(96vw, 1800px);
+    max-width: none;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+    text-shadow:
+        1px 0 0 rgba(0, 0, 0, 0.6),
+        -1px 0 0 rgba(0, 0, 0, 0.6),
+        0 1px 0 rgba(0, 0, 0, 0.6),
+        0 -1px 0 rgba(0, 0, 0, 0.6),
+        1px 1px 0 rgba(0, 0, 0, 0.5),
+        -1px 1px 0 rgba(0, 0, 0, 0.5),
+        1px -1px 0 rgba(0, 0, 0, 0.5),
+        -1px -1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.header-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.subtitle { margin: 6px 0 0; color: var(--muted); }
+
+.status {
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--border);
+    font-weight: 600;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 8px 24px var(--card-shadow);
+}
+
+.card.wide {
+    grid-column: 1 / -1;
+}
+
+.pid-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.pid-row .field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    flex: 1 1 120px;
+}
+
+.pid-row.pid-triple button {
+    margin-left: auto;
+}
+
+.pid-row .label {
+    font-weight: 600;
+    min-width: 28px;
+}
+
+.pid-row input,
+.pid-row select {
+    padding: 6px;
+    min-width: 64px;
+    flex: 1 1 120px;
+}
+
+.pid-row .grow {
+    flex: 1 1 180px;
+}
+
+.pid-row .hint {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.pid-row button {
+    padding: 6px 12px;
+    background: var(--accent);
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.ghost {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+}
+
+.telemetry div { margin-bottom: 6px; }
+
+canvas { width: 100%; border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,0.6); }
+
+.error-message { margin-top: 8px; color: #b00020; }
+
+body[data-theme="dark"] canvas {
+    background: rgba(0,0,0,0.2);
+}
+
+body[data-layout="mobile"] .grid {
+    grid-template-columns: 1fr;
+}
+
+body[data-layout="mobile"] .card.wide {
+    grid-column: auto;
+}
+
+body[data-layout="mobile"] .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+body[data-layout="desktop"] .grid {
+    grid-template-columns: var(--controls-col, 420px) minmax(var(--content-min, 420px), 1fr);
+    grid-template-areas:
+        "controls telemetry"
+        "controls history"
+        "controls wireframe";
+    align-items: start;
+}
+
+body[data-layout="desktop"] .card-controls { grid-area: controls; }
+body[data-layout="desktop"] .card-telemetry { grid-area: telemetry; }
+body[data-layout="desktop"] .card-history { grid-area: history; }
+body[data-layout="desktop"] .card-wireframe { grid-area: wireframe; }
+body[data-layout="desktop"] .card-controls {
+    height: calc(var(--history-h, 220px) + var(--wire-h, 320px) + 81px);
+}
+
+@media (min-width: 1400px) {
+    body[data-layout="desktop"] .grid {
+        grid-template-columns: var(--controls-col, 420px) minmax(260px, 0.75fr) minmax(620px, 1.4fr);
+        grid-template-areas:
+            "controls telemetry history"
+            "controls wireframe wireframe";
+    }
+}
+
+.card-history { min-height: var(--history-h, 220px); }
+.card-wireframe { min-height: var(--wire-h, 320px); }
+.card-telemetry { min-height: var(--history-h, 220px); }
+.card-history canvas,
+.card-wireframe canvas { height: 100%; }

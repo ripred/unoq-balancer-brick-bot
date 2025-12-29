@@ -1,2 +1,6 @@
 *.tar.gz
 tmp_remote/
+unoq/**/.cache/
+unoq/**/__pycache__/
+unoq/**/*.pyc
+unoq/**/.venv/

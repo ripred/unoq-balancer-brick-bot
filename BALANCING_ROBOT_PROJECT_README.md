@@ -166,7 +166,7 @@ The Arduino Uno Q has 16GB eMMC storage partitioned as:
 
 **Your projects live in:** `/home/arduino/ArduinoApps/`
 
-### Project Directory Structure
+### Project Directory Structure (on the board)
 
 ```
 /home/arduino/ArduinoApps/
@@ -197,6 +197,22 @@ Brick catalog docs/examples (used by App Lab UI):
 - `/home/arduino/.local/share/arduino-app-cli/assets/0.6.2/docs/arduino/balancing_robot/README.md`
 - `/home/arduino/.local/share/arduino-app-cli/assets/0.6.2/api-docs/arduino/app_bricks/balancing_robot/API.md`
 - `/home/arduino/.local/share/arduino-app-cli/assets/0.6.2/examples/arduino/balancing_robot/`
+
+### Repo Snapshot Layout (this repo)
+
+The minimal custom files from the Uno Q are mirrored here for version control:
+
+```
+repo_root/
+└── unoq/
+    ├── ArduinoApps/
+    │   └── balancing_bot_app/              # Full custom app (MPU + MCU + UI)
+    └── arduino-app-cli-assets/0.6.2/
+        ├── docs/arduino/balancing_robot/README.md
+        ├── api-docs/arduino/app_bricks/balancing_robot/API.md
+        ├── examples/arduino/balancing_robot/
+        └── bricks-list.append.yaml         # Patch snippet to add brick to bricks-list.yaml
+```
 
 ### The Dual-Environment Architecture
 
@@ -605,8 +621,12 @@ bricks:
    - Observe simulation behavior
 
 3. **Document Mac-Side Project**
-   - Check if older version exists in App Lab IDE
-   - Decide on primary development environment
+   - Primary source of truth is this git repo
+   - Remote origin: `https://github.com/ripred/unoq-balancer-brick-bot` (public)
+   - Running app + brick assets live on the Uno Q (accessible via `ssh arduino@ada.local`)
+     - App: `/home/arduino/ArduinoApps/balancing_bot_app`
+     - Brick docs/examples/assets: `/home/arduino/.local/share/arduino-app-cli/assets/0.6.2/`
+   - App Lab IDE on macOS may show cached copies; refresh/restart if it looks stale
 
 ### Hardware Integration (Next Phase)
 

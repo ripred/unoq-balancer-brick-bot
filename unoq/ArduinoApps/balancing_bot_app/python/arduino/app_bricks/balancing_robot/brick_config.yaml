@@ -1,0 +1,8 @@
+id: arduino:balancing_robot
+name: Balancing Robot
+description: Balancing robot brick with dual motors, IMU, PID tuning, and live dashboard.
+category: robotics
+variables:
+  - name: IMU_MODEL
+    description: Selected IMU model (e.g., mpu6050, mpu9250)
+    default_value: mpu6050
