@@ -607,3 +607,7 @@ Next up:
 - Mirrored the Brick catalog docs/examples/API into `repo_root/unoq/arduino-app-cli-assets/0.6.2/`.
 - Captured the `bricks-list.yaml` append snippet as `bricks-list.append.yaml` (for registration in App Lab).
 - Excluded caches and runtime artifacts (`.cache`, `__pycache__`, `*.pyc`).
+
+### Milestone 47: Script portability pass (Dec 29, 2025)
+- Generalized scaffold/deploy scripts to be brick-agnostic and reusable across projects.
+- Added an assets installer script to copy Brick docs/API/examples into the Uno Q assets cache.

@@ -6,7 +6,7 @@ set -euo pipefail
 #   ./03_deploy_app_to_uno_q.sh --local-app ./balancing_bot_app --remote arduino@ada.local
 
 LOCAL_APP=""
-REMOTE_HOST="arduino@ada.local"
+REMOTE_HOST="${REMOTE_HOST:-${UNOQ_HOST:-arduino@ada.local}}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -41,6 +41,22 @@ ssh "$REMOTE_HOST" "REMOTE_APP_DIR=$(printf '%q' "$REMOTE_APP_DIR") bash -s" <<'
 set -euo pipefail
 mkdir -p "$REMOTE_APP_DIR"
 REMOTE
-rsync -az --delete "$LOCAL_APP/" "$REMOTE_HOST:$REMOTE_APP_DIR/"
+
+EXCLUDES=(
+  --exclude '.cache/'
+  --exclude '__pycache__/'
+  --exclude '*.pyc'
+  --exclude '.venv/'
+)
+
+if command -v rsync >/dev/null 2>&1; then
+  rsync -az --delete "${EXCLUDES[@]}" "$LOCAL_APP/" "$REMOTE_HOST:$REMOTE_APP_DIR/"
+else
+  # shellcheck disable=SC2029
+  tar -C "$LOCAL_APP" -czf - "${EXCLUDES[@]}" . | ssh "$REMOTE_HOST" "REMOTE_APP_DIR=$(printf '%q' "$REMOTE_APP_DIR") bash -s" <<'REMOTE'
+set -euo pipefail
+tar -xzf - -C "$REMOTE_APP_DIR"
+REMOTE
+fi
 
 echo "Deployed $LOCAL_APP -> $REMOTE_HOST:$REMOTE_APP_DIR"

@@ -6,7 +6,7 @@ set -euo pipefail
 #   ./04_start_dev_mode.sh --app-id user:balancing_bot_app --remote arduino@ada.local
 
 APP_ID=""
-REMOTE_HOST="arduino@ada.local"
+REMOTE_HOST="${REMOTE_HOST:-${UNOQ_HOST:-arduino@ada.local}}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
