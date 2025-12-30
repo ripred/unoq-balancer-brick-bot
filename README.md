@@ -1,6 +1,7 @@
 # Arduino Uno Q Custom Brick + App (End-to-End Instructions)
 
 This repo contains a full custom App Lab Brick + app for Arduino Uno Q, plus reusable scripts and end-to-end instructions.
+Note: This is a work in progress so changes and bug fixes may be frequent for a few days.
 
 Brick gallery — Overview tab.
 ![Balancing Robot Brick — Overview](articles/images/brick_overview.png)
