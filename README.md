@@ -27,8 +27,8 @@ IMPORTANT NAME NOTES (read first):
 - The default Uno Q user is `arduino`.
 - If your board name or username is different, replace `ada` and `arduino` in every command.
 
-Example: if your board is named `myboard` and your user is `trent`, then:
-  arduino@ada.local  -->  trent@myboard.local
+Example: if your board is named `myboard` and your user is `foo`, then:
+  arduino@ada.local  -->  foo@myboard.local
 
 Everything below assumes you are running commands from the repo root.
 
