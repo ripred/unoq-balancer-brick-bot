@@ -176,3 +176,17 @@ Local image paths (repo relative):
 - articles/images/app_list.png
 - articles/images/app_readme.png
 - articles/images/dashboard.png
+
+Preview (as rendered on GitHub):
+
+![Balancing Robot Brick — Overview](articles/images/brick_overview.png)
+
+![Balancing Robot Brick — Usage Examples](articles/images/brick_examples.png)
+
+![Balancing Robot Brick — API Documentation](articles/images/brick_api.png)
+
+![Balancing Bot App — My Apps list](articles/images/app_list.png)
+
+![Balancing Bot App — README](articles/images/app_readme.png)
+
+![Balancing Bot App — Live dashboard](articles/images/dashboard.png)
