@@ -170,23 +170,22 @@ Planned screenshots to include in posts:
 - Live HTML dashboard running
 
 Local image paths (repo relative):
-- articles/images/brick_overview.png
-- articles/images/brick_examples.png
-- articles/images/brick_api.png
-- articles/images/app_list.png
-- articles/images/app_readme.png
-- articles/images/dashboard.png
-
 Preview (as rendered on GitHub):
 
+Brick gallery — Overview tab.
 ![Balancing Robot Brick — Overview](articles/images/brick_overview.png)
 
+Brick gallery — Usage Examples tab.
 ![Balancing Robot Brick — Usage Examples](articles/images/brick_examples.png)
 
+Brick gallery — API Documentation tab.
 ![Balancing Robot Brick — API Documentation](articles/images/brick_api.png)
 
+App Lab — My Apps list entry.
 ![Balancing Bot App — My Apps list](articles/images/app_list.png)
 
+App README as rendered in App Lab.
 ![Balancing Bot App — README](articles/images/app_readme.png)
 
+Live dashboard served by the app.
 ![Balancing Bot App — Live dashboard](articles/images/dashboard.png)
