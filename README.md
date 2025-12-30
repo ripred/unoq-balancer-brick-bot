@@ -165,5 +165,14 @@ Planned screenshots to include in posts:
 - Brick gallery README tab
 - Brick gallery Example Usage tab
 - Brick gallery API Documentation tab
+- App list entry (My Apps)
 - App README page (as rendered in App Lab)
 - Live HTML dashboard running
+
+Local image paths (repo relative):
+- articles/images/brick_overview.png
+- articles/images/brick_examples.png
+- articles/images/brick_api.png
+- articles/images/app_list.png
+- articles/images/app_readme.png
+- articles/images/dashboard.png
