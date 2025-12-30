@@ -1,5 +1,27 @@
 # Arduino Uno Q Custom Brick + App (End-to-End Instructions)
 
+This repo contains a full custom App Lab Brick + app for Arduino Uno Q, plus reusable scripts and end-to-end instructions.
+
+Preview (as rendered on GitHub):
+
+Brick gallery — Overview tab.
+![Balancing Robot Brick — Overview](articles/images/brick_overview.png)
+
+Brick gallery — Usage Examples tab.
+![Balancing Robot Brick — Usage Examples](articles/images/brick_examples.png)
+
+Brick gallery — API Documentation tab.
+![Balancing Robot Brick — API Documentation](articles/images/brick_api.png)
+
+App Lab — My Apps list entry.
+![Balancing Bot App — My Apps list](articles/images/app_list.png)
+
+App README as rendered in App Lab.
+![Balancing Bot App — README](articles/images/app_readme.png)
+
+Live dashboard served by the app.
+![Balancing Bot App — Live dashboard](articles/images/dashboard.png)
+
 These instructions are written for macOS, Windows, and Linux hosts.
 
 IMPORTANT NAME NOTES (read first):
@@ -158,34 +180,3 @@ Install your Brick docs/examples:
     shellcheck ./scripts/*.sh
 
 ---
-
-12) Images (for the article series)
-
-Planned screenshots to include in posts:
-- Brick gallery README tab
-- Brick gallery Example Usage tab
-- Brick gallery API Documentation tab
-- App list entry (My Apps)
-- App README page (as rendered in App Lab)
-- Live HTML dashboard running
-
-Local image paths (repo relative):
-Preview (as rendered on GitHub):
-
-Brick gallery — Overview tab.
-![Balancing Robot Brick — Overview](articles/images/brick_overview.png)
-
-Brick gallery — Usage Examples tab.
-![Balancing Robot Brick — Usage Examples](articles/images/brick_examples.png)
-
-Brick gallery — API Documentation tab.
-![Balancing Robot Brick — API Documentation](articles/images/brick_api.png)
-
-App Lab — My Apps list entry.
-![Balancing Bot App — My Apps list](articles/images/app_list.png)
-
-App README as rendered in App Lab.
-![Balancing Bot App — README](articles/images/app_readme.png)
-
-Live dashboard served by the app.
-![Balancing Bot App — Live dashboard](articles/images/dashboard.png)
