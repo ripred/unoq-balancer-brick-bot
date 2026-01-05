@@ -1,6 +1,7 @@
 *.tar.gz
 .DS_Store
 tmp_remote/
+articles/
 __pycache__/
 *.pyc
 *.pyo
