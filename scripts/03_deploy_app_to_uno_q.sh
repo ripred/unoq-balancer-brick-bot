@@ -1,19 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Idempotent deploy of a local app folder to UNO Q over SSH.
+# Idempotent deploy of the app from this repo to UNO Q over SSH.
 # Usage:
-#   ./03_deploy_app_to_uno_q.sh --local-app ./balancing_bot_app --remote arduino@ada.local
+#   ./03_deploy_app_to_uno_q.sh --repo https://github.com/ripred/unoq-balancer-brick-bot.git --remote arduino@ada.local
 
-LOCAL_APP=""
+REPO_URL=""
+REMOTE_REPO_DIR="/home/arduino/unoq-balancer-brick-bot"
+APP_SRC="unoq/ArduinoApps/balancing_bot_app"
 REMOTE_HOST="${REMOTE_HOST:-${UNOQ_HOST:-arduino@ada.local}}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --local-app) LOCAL_APP="$2"; shift 2;;
+    --repo) REPO_URL="$2"; shift 2;;
+    --repo-dir) REMOTE_REPO_DIR="$2"; shift 2;;
+    --app-src) APP_SRC="$2"; shift 2;;
     --remote) REMOTE_HOST="$2"; shift 2;;
     -h|--help)
-      sed -n '1,60p' "$0"
+      sed -n '1,80p' "$0"
       exit 0
       ;;
     *)
@@ -21,42 +25,42 @@ while [[ $# -gt 0 ]]; do
       exit 1
       ;;
   esac
- done
+done
 
-if [[ -z "$LOCAL_APP" ]]; then
-  echo "Missing required arg: --local-app" >&2
+if [[ -z "$REPO_URL" ]]; then
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    REPO_URL="$(git config --get remote.origin.url || true)"
+  fi
+fi
+
+if [[ -z "$REPO_URL" ]]; then
+  echo "Missing required arg: --repo (or set a git origin in this repo)" >&2
   exit 1
 fi
 
-if [[ ! -d "$LOCAL_APP" ]]; then
-  echo "Local app not found: $LOCAL_APP" >&2
-  exit 1
-fi
-
-APP_NAME="$(basename "$LOCAL_APP")"
+APP_NAME="$(basename "$APP_SRC")"
 REMOTE_APP_DIR="/home/arduino/ArduinoApps/$APP_NAME"
 
 # shellcheck disable=SC2029
-ssh "$REMOTE_HOST" "REMOTE_APP_DIR=$(printf '%q' "$REMOTE_APP_DIR") bash -s" <<'REMOTE'
+ssh "$REMOTE_HOST" "REPO_URL=$(printf '%q' "$REPO_URL") REPO_DIR=$(printf '%q' "$REMOTE_REPO_DIR") APP_SRC=$(printf '%q' "$APP_SRC") REMOTE_APP_DIR=$(printf '%q' "$REMOTE_APP_DIR") bash -s" <<'REMOTE'
 set -euo pipefail
-mkdir -p "$REMOTE_APP_DIR"
-REMOTE
 
-EXCLUDES=(
-  --exclude '.cache/'
-  --exclude '__pycache__/'
-  --exclude '*.pyc'
-  --exclude '.venv/'
-)
-
-if command -v rsync >/dev/null 2>&1; then
-  rsync -az --delete "${EXCLUDES[@]}" "$LOCAL_APP/" "$REMOTE_HOST:$REMOTE_APP_DIR/"
+if [[ -d "$REPO_DIR/.git" ]]; then
+  git -C "$REPO_DIR" fetch --all --prune
+  git -C "$REPO_DIR" reset --hard origin/main
 else
-  # shellcheck disable=SC2029
-  tar -C "$LOCAL_APP" -czf - "${EXCLUDES[@]}" . | ssh "$REMOTE_HOST" "REMOTE_APP_DIR=$(printf '%q' "$REMOTE_APP_DIR") bash -s" <<'REMOTE'
-set -euo pipefail
-tar -xzf - -C "$REMOTE_APP_DIR"
-REMOTE
+  rm -rf "$REPO_DIR"
+  git clone --depth 1 "$REPO_URL" "$REPO_DIR"
 fi
 
-echo "Deployed $LOCAL_APP -> $REMOTE_HOST:$REMOTE_APP_DIR"
+if [[ ! -d "$REPO_DIR/$APP_SRC" ]]; then
+  echo "App source not found in repo: $REPO_DIR/$APP_SRC" >&2
+  exit 1
+fi
+
+rm -rf "$REMOTE_APP_DIR"
+mkdir -p "$REMOTE_APP_DIR"
+cp -R "$REPO_DIR/$APP_SRC"/. "$REMOTE_APP_DIR"/
+REMOTE
+
+echo "Deployed $APP_SRC from $REPO_URL -> $REMOTE_HOST:$REMOTE_APP_DIR"

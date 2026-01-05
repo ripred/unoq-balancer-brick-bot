@@ -1,181 +1,76 @@
-# Arduino Uno Q Custom Brick + App (End-to-End Instructions)
+# Uno Q Balancing Bot (Custom Brick + App)
 
-This repo contains a full custom App Lab Brick + app for Arduino Uno Q, plus reusable scripts and end-to-end instructions.
-Note: This is a work in progress so changes and bug fixes may be frequent for a few days.
+This repo contains the raw source files needed to recreate the working Uno Q setup:
+- custom `balancing_robot` brick (Python + docs/examples/API)
+- `balancing_bot_app` App Lab application (Python + web UI + sketch)
 
-Brick gallery — Overview tab.
-![Balancing Robot Brick — Overview](articles/images/brick_overview.png)
+No archives or scp are used by the scripts; they pull raw files via `git` on the board.
 
-Brick gallery — Usage Examples tab.
-![Balancing Robot Brick — Usage Examples](articles/images/brick_examples.png)
+## Requirements
+- Arduino Uno Q with App Lab runtime
+- SSH access to the board (default `arduino@ada.local`)
+- `git` installed on the board
+- Host machine with `git` + `ssh`
 
-Brick gallery — API Documentation tab.
-![Balancing Robot Brick — API Documentation](articles/images/brick_api.png)
+## Recreate the running environment
 
-App Lab — My Apps list entry.
-![Balancing Bot App — My Apps list](articles/images/app_list.png)
+Clone the repo:
+```bash
+git clone https://github.com/ripred/unoq-balancer-brick-bot.git
+cd unoq-balancer-brick-bot
+```
 
-App README as rendered in App Lab.
-![Balancing Bot App — README](articles/images/app_readme.png)
+Set your board host (optional):
+```bash
+export UNOQ_HOST="arduino@ada.local"
+```
 
-Live dashboard served by the app.
-![Balancing Bot App — Live dashboard](articles/images/dashboard.png)
+Verify SSH works:
+```bash
+ssh "${UNOQ_HOST:-arduino@ada.local}" "uname -a"
+```
 
-These instructions are written for macOS, Windows, and Linux hosts.
+1) Install the brick docs/examples/API into the App Lab assets cache:
+```bash
+./scripts/05_install_brick_assets.sh \
+  --repo "$(git config --get remote.origin.url)" \
+  --remote "${UNOQ_HOST:-arduino@ada.local}"
+```
 
-IMPORTANT NAME NOTES (read first):
-- In the examples below, the Uno Q board name is `ada`.
-- The default Uno Q user is `arduino`.
-- If your board name or username is different, replace `ada` and `arduino` in every command.
+2) Register the brick in `bricks-list.yaml`:
+```bash
+./scripts/02_register_brick_on_uno_q.sh \
+  --brick-id "arduino:balancing_robot" \
+  --brick-name "Balancing Robot" \
+  --remote "${UNOQ_HOST:-arduino@ada.local}"
+```
 
-Example: if your board is named `myboard` and your user is `foo`, then:
-  arduino@ada.local  -->  foo@myboard.local
+3) Deploy the app to the Uno Q:
+```bash
+./scripts/03_deploy_app_to_uno_q.sh \
+  --repo "$(git config --get remote.origin.url)" \
+  --remote "${UNOQ_HOST:-arduino@ada.local}"
+```
 
-Everything below assumes you are running commands from the repo root.
-
----
-
-1) Prerequisites (host machine)
-
-- Git installed
-- SSH client available
-- Bash shell (macOS/Linux terminals, or Git Bash / WSL on Windows)
-- Arduino App Lab installed (recommended for UI + Brick gallery)
-- Uno Q updated and reachable on your network
-
-On Windows:
-- Recommended: use WSL2 (Ubuntu) and run commands from WSL.
-- Alternative: use Git Bash for SSH + git.
-
----
-
-2) Clone the repo
-
-  git clone https://github.com/ripred/unoq-balancer-brick-bot.git
-  cd unoq-balancer-brick-bot
-
----
-
-3) Set your board target (host machine)
-
-Set UNOQ_HOST to match your board name and user:
-
-  export UNOQ_HOST="arduino@ada.local"
-
-PowerShell (Windows):
-
-  $env:UNOQ_HOST="arduino@ada.local"
-
-You can also pass --remote in any script instead of setting UNOQ_HOST.
-
----
-
-4) Confirm SSH works
-
-  ssh "$UNOQ_HOST" "uname -a"
-
-If this fails, fix networking or the board name first. If `.local` doesn’t resolve on your network, use the board’s IP address instead.
-
----
-
-5) Install the Brick metadata (docs/API/examples) on the Uno Q
-
-This makes your custom Brick show up in the App Lab Brick gallery.
-
-  ./scripts/05_install_brick_assets.sh \
-    --brick-name balancing_robot \
-    --local-assets ./unoq/arduino-app-cli-assets/0.6.2
-
-If your Uno Q uses a different App Lab assets version, add:
-  --assets-version 0.6.2
-
-Note: the Brick gallery won’t update until the App Lab daemon is restarted (next step).
-
----
-
-6) Register the Brick in bricks-list.yaml
-
-  ./scripts/02_register_brick_on_uno_q.sh \
-    --brick-id "arduino:balancing_robot" \
-    --brick-name "Balancing Robot" \
-    --description "Balancing robot brick (custom)" \
-    --category robotics
-
----
-
-7) Restart the App Lab daemon (required to refresh Brick gallery)
-
-App Lab caches the brick list. After you register a custom brick or update its metadata,
-restart the daemon so the gallery refreshes:
-
-  ssh "$UNOQ_HOST" "pkill -f 'arduino-app-cli daemon' && nohup arduino-app-cli daemon --log-level error >/tmp/arduino-app-cli-daemon.log 2>&1 &"
-
-Then reopen App Lab.
-
----
-
-8) Deploy the app to the Uno Q
-
-  ./scripts/03_deploy_app_to_uno_q.sh \
-    --local-app ./unoq/ArduinoApps/balancing_bot_app
-
----
-
-9) Start the app (dev mode)
-
-  ./scripts/04_start_dev_mode.sh \
-    --app-id "user:balancing_bot_app"
+4) Start (or restart) the app:
+```bash
+ssh "${UNOQ_HOST:-arduino@ada.local}" "arduino-app-cli app start user:balancing_bot_app"
+```
 
 Open the dashboard:
-  http://ada.local:7000
+```
+http://ada.local:7000
+```
 
----
+## Verify
+On the board:
+```bash
+arduino-app-cli app list
+arduino-app-cli app logs user:balancing_bot_app
+```
 
-10) Create your own Brick + App (reusable workflow)
-
-These scripts are project-agnostic. Use them for any future custom Brick/app.
-
-Brick scaffold:
-  ./scripts/00_scaffold_brick.sh \
-    --brick-name my_brick \
-    --brick-id "arduino:my_brick" \
-    --brick-title "My Brick" \
-    --brick-class MyBrick \
-    --app-name my_brick_app
-
-App scaffold:
-  ./scripts/01_scaffold_app.sh \
-    --app-name my_brick_app \
-    --brick-id "arduino:my_brick" \
-    --brick-python-name my_brick \
-    --brick-class MyBrick \
-    --app-description "My custom Uno Q app" \
-    --app-icon "🧱" \
-    --port 7000
-
-Register your Brick:
-  ./scripts/02_register_brick_on_uno_q.sh \
-    --brick-id "arduino:my_brick" \
-    --brick-name "My Brick" \
-    --description "Custom brick (local)" \
-    --category custom
-
-Deploy your app:
-  ./scripts/03_deploy_app_to_uno_q.sh \
-    --local-app ./path/to/my_brick_app
-
-Install your Brick docs/examples:
-  ./scripts/05_install_brick_assets.sh \
-    --brick-name my_brick \
-    --local-assets ./path/to/assets/version
-
----
-
-11) Notes
-
-- These scripts are idempotent and safe to re-run.
-- If rsync is not installed on your host, the deploy script falls back to tar over SSH.
-- Shellcheck is required for script changes; run it on scripts before committing:
-    shellcheck ./scripts/*.sh
-
----
+## Notes
+- The scripts use `git` on the board to pull raw source files from this repo (no scp/archives).
+- The board will build its own `.cache/` and venv under the app directory at runtime. Those are intentionally excluded from this repo.
+- If your board uses a different assets version, pass `--assets-src` to `scripts/05_install_brick_assets.sh`.
+- App + brick details are documented in `unoq/ArduinoApps/balancing_bot_app/README.md`.
