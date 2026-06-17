@@ -1,6 +1,5 @@
 # Uno Q Balancing Bot (Custom Brick + App)
 
-[![Arduino-lint](https://github.com/ripred/unoq-balancer-brick-bot/actions/workflows/arduino-lint.yml/badge.svg)](https://github.com/ripred/unoq-balancer-brick-bot/actions/workflows/arduino-lint.yml)
 [![License](https://flat.badgen.net/github/license/ripred/unoq-balancer-brick-bot)](https://github.com/ripred/unoq-balancer-brick-bot/blob/main/LICENSE)
 [![Stars](https://flat.badgen.net/github/stars/ripred/unoq-balancer-brick-bot)](https://github.com/ripred/unoq-balancer-brick-bot/stargazers)
 [![Forks](https://flat.badgen.net/github/forks/ripred/unoq-balancer-brick-bot)](https://github.com/ripred/unoq-balancer-brick-bot/network/members)
